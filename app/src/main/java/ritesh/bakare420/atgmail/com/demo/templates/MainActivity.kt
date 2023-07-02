@@ -2,10 +2,20 @@ package ritesh.bakare420.atgmail.com.demo.templates
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ritesh.bakare420.atgmail.com.demo.templates.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+
     }
+
+
 }
