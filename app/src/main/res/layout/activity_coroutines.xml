@@ -45,5 +45,13 @@
         android:text="Some Long Task With Thread"
         />
 
+    <Button
+        android:id="@+id/btnCoroutinesInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Coroutines Info"
+        />
+
 
 </LinearLayout>

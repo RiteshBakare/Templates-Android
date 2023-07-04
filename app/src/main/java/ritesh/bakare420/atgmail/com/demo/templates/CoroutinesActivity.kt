@@ -3,6 +3,7 @@ package ritesh.bakare420.atgmail.com.demo.templates
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.combineTransform
 import ritesh.bakare420.atgmail.com.demo.templates.databinding.ActivityCoroutinesBinding
 import kotlin.concurrent.thread
@@ -31,7 +32,22 @@ class CoroutinesActivity : AppCompatActivity() {
             taskWithThread()
         }
 
+        binding.btnCoroutinesInfo.setOnClickListener {
 
+            CoroutineScope(Dispatchers.IO).launch {
+                Log.d("ThreadCheck","1) => Thread name: ${Thread.currentThread().name}")
+            }
+
+            GlobalScope.launch(Dispatchers.Main) {
+                Log.d("ThreadCheck","2) => Thread name: ${Thread.currentThread().name}")
+            }
+
+            MainScope().launch(Dispatchers.Default) {
+                Log.d("ThreadCheck","3) => Thread name: ${Thread.currentThread().name}")
+            }
+
+
+        }
 
     }
 
