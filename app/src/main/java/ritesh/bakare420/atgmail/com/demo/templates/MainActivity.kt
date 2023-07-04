@@ -1,5 +1,6 @@
 package ritesh.bakare420.atgmail.com.demo.templates
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ritesh.bakare420.atgmail.com.demo.templates.databinding.ActivityMainBinding
@@ -13,6 +14,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        // Coroutines Activity
+        binding.btnCoroutines.setOnClickListener {
+            startActivity(Intent(this,CoroutinesActivity::class.java))
+        }
 
 
     }
