@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CoroutinesActivity"
     android:orientation="vertical"
-    >
+    tools:context=".CoroutinesActivity">
 
     <TextView
         android:id="@+id/tvCounter"
         android:layout_width="100dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
-        android:text="0"
-        android:textSize="32dp"
         android:gravity="center"
-        android:textStyle="bold"
+        android:text="0"
         android:textColor="@color/black"
-        />
+        android:textSize="32dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnUpdateCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Update Counter"
-        />
+        android:text="Update Counter" />
 
     <Button
         android:id="@+id/btnLongTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Some Long Task "
-        />
+        android:text="Some Long Task " />
 
     <Button
         android:id="@+id/btnLongTaskWithThread"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Some Long Task With Thread"
-        />
+        android:text="Some Long Task With Thread" />
 
     <Button
         android:id="@+id/btnCoroutinesInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Coroutines Info"
+        android:text="Coroutines Info" />
+
+    <Button
+        android:id="@+id/btnCoroutinesSuspend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Suspend functions"
+        android:layout_marginTop="20dp"
         />
 
 
