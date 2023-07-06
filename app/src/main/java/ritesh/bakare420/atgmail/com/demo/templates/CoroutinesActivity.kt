@@ -61,8 +61,43 @@ class CoroutinesActivity : AppCompatActivity() {
 
         }
 
+        binding.btnCoroutinesBuilders.setOnClickListener {
+
+            CoroutineScope(Dispatchers.IO).launch {
+                printFBFollowersUsingLaunch()
+            }
+
+            CoroutineScope(Dispatchers.IO).launch {
+                printFBFollowersUsingAsync()
+            }
+
+
+        }
+
 
     }
+
+    private suspend fun printFBFollowersUsingAsync() {
+        val job = CoroutineScope(Dispatchers.IO).async {
+            getFBFollowers()
+        }
+        Log.d("CoroutinesBuilders", "fb followers: ${job.await()} using async ")
+    }
+
+    private suspend fun printFBFollowersUsingLaunch() {
+        var fbFollowers = 0
+        val job = CoroutineScope(Dispatchers.IO).launch {
+            fbFollowers = getFBFollowers()
+        }
+        job.join()
+        Log.d("CoroutinesBuilders", "fb followers: $fbFollowers using launch")
+    }
+
+    private suspend fun getFBFollowers(): Int {
+        delay(1000)
+        return 120
+    }
+
 
     private suspend fun task1() {
         Log.d("MyCoroutines", "Starting Task 1 and thread is ${Thread.currentThread().name}")

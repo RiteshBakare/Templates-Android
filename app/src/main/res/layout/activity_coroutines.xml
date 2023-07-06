@@ -51,9 +51,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Suspend functions"
         android:layout_marginTop="20dp"
-        />
+        android:text="Suspend functions" />
+
+    <Button
+        android:id="@+id/btnCoroutinesBuilders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Coroutines Builders " />
 
 
 </LinearLayout>
