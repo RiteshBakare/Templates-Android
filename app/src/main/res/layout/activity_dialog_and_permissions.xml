@@ -5,28 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".DialogAndPermissions"
     android:orientation="vertical"
     >
 
     <Button
-        android:id="@+id/btnCoroutines"
+        android:id="@+id/btnAlertDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CoRoutines"
         android:layout_gravity="center"
-        android:padding="10dp"
         android:layout_margin="10dp"
-        />
-
-    <Button
-        android:id="@+id/btnDialogAndPermissions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dialogs and Permissions"
-        android:layout_gravity="center"
         android:padding="10dp"
-        android:layout_margin="10dp"
+        android:text="Alert Dialog"
         />
 
 </LinearLayout>

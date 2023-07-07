@@ -21,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        // Dialog and Permissions Activity
+        binding.btnDialogAndPermissions.setOnClickListener {
+            startActivity(Intent(this,DialogAndPermissions::class.java))
+        }
+
     }
 
 
