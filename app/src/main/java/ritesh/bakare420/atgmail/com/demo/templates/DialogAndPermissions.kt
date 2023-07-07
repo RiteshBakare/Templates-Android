@@ -1,8 +1,9 @@
 package ritesh.bakare420.atgmail.com.demo.templates
 
-import android.app.AlertDialog
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Looper
 import android.widget.Toast
 import ritesh.bakare420.atgmail.com.demo.templates.databinding.ActivityDialogAndPermissionsBinding
 
@@ -11,6 +12,7 @@ class DialogAndPermissions : AppCompatActivity() {
 
     private lateinit var binding: ActivityDialogAndPermissionsBinding
 
+    private lateinit var progressBar : Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDialogAndPermissionsBinding.inflate(layoutInflater)
@@ -24,6 +26,17 @@ class DialogAndPermissions : AppCompatActivity() {
             )
         }
 
+        // initializing the Progress Bar
+        progressBar = Dialog(this)
+
+        binding.btnProgressBar.setOnClickListener {
+            showMyProgressBar()
+
+            android.os.Handler(Looper.getMainLooper()).postDelayed({
+                dismissMyProgressBar()
+            }, 1000)
+
+        }
 
     }
 
@@ -49,5 +62,17 @@ class DialogAndPermissions : AppCompatActivity() {
 
         builder.create().show()
     }
+
+    // function for having a Progress Bar
+
+
+    private fun showMyProgressBar() {
+        progressBar.setContentView(R.layout.my_progress_bar)
+        progressBar.show()
+    }
+
+    // function for dismissing progress Bar
+    private fun dismissMyProgressBar() = progressBar.dismiss()
+
 
 }
