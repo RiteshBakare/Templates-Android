@@ -23,7 +23,7 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:padding="10dp"
-        android:text="Progress Bar" />
+        android:text="Simple Progress Bar" />
 
     <Button
         android:id="@+id/btnCustomDialog"
@@ -32,6 +32,26 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:padding="10dp"
-        android:text="Progress Bar" />
+        android:text="Custom Dialog" />
+
+    <ProgressBar
+        android:id="@+id/customProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="false"
+        android:layout_gravity="center"
+        android:progress="0"
+        android:layout_margin="10dp"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        />
+
+    <Button
+        android:id="@+id/btnCustomProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:text="Custom Progress" />
 
 </LinearLayout>

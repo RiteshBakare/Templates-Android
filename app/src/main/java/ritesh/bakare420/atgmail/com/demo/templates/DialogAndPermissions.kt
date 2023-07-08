@@ -47,6 +47,10 @@ class DialogAndPermissions : AppCompatActivity() {
             myCustomDialog("Hello Custom Dialog Title ", "This is message from custom dialog :-) ")
         }
 
+        binding.btnCustomProgressBar.setOnClickListener {
+            myCustomProgressBar()
+        }
+
 
     }
 
@@ -115,5 +119,9 @@ class DialogAndPermissions : AppCompatActivity() {
         builder.show()
     }
 
+    // function for having custom Progress Bar
+    fun myCustomProgressBar() {
+        binding.customProgressBar.progress = binding.customProgressBar.progress + 10
+    }
 
 }
