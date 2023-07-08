@@ -53,4 +53,13 @@
         android:padding="10dp"
         android:text="Custom Progress" />
 
+    <Button
+        android:id="@+id/DatePickerDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:text="Data Picker" />
+
 </LinearLayout>

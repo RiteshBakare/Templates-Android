@@ -1,5 +1,6 @@
 package ritesh.bakare420.atgmail.com.demo.templates
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.w3c.dom.Text
 import ritesh.bakare420.atgmail.com.demo.templates.databinding.ActivityDialogAndPermissionsBinding
+import java.util.*
 
 class DialogAndPermissions : AppCompatActivity() {
 
@@ -51,7 +53,9 @@ class DialogAndPermissions : AppCompatActivity() {
             myCustomProgressBar()
         }
 
-
+        binding.DatePickerDialog.setOnClickListener {
+            myDatePickerDialog()
+        }
     }
 
     // function for having Alert Dialog
@@ -124,4 +128,26 @@ class DialogAndPermissions : AppCompatActivity() {
         binding.customProgressBar.progress = binding.customProgressBar.progress + 10
     }
 
+    // function for having date picker dialog
+    private fun myDatePickerDialog() {
+
+        val myCalendar = Calendar.getInstance()
+        val day = myCalendar.get(Calendar.DAY_OF_MONTH)
+        val month = myCalendar.get(Calendar.MONTH)
+        val year = myCalendar.get(Calendar.YEAR)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                Toast.makeText(
+                    this@DialogAndPermissions,
+                    "Selected Date: day: $dayOfMonth month: $month year: $year ",
+                    Toast.LENGTH_LONG
+                ).show()
+            },
+            year, month, day
+        )
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+        datePickerDialog.show()
+    }
 }
