@@ -3,6 +3,7 @@ package ritesh.bakare420.atgmail.com.demo.templates
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ritesh.bakare420.atgmail.com.demo.templates.RecyclerView.RecyclerViewActivity
 import ritesh.bakare420.atgmail.com.demo.templates.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +26,13 @@ class MainActivity : AppCompatActivity() {
         binding.btnDialogAndPermissions.setOnClickListener {
             startActivity(Intent(this,DialogAndPermissions::class.java))
         }
+
+        // Recycler View Activity
+        binding.btnRecyclerViews.setOnClickListener {
+            startActivity(Intent(this, RecyclerViewActivity::class.java))
+        }
+
+
 
     }
 
