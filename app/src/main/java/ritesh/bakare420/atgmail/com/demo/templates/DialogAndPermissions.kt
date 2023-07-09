@@ -2,16 +2,21 @@ package ritesh.bakare420.atgmail.com.demo.templates
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.w3c.dom.Text
 import ritesh.bakare420.atgmail.com.demo.templates.databinding.ActivityDialogAndPermissionsBinding
 import java.util.*
+import kotlin.collections.ArrayList
 
 class DialogAndPermissions : AppCompatActivity() {
 
@@ -19,16 +24,42 @@ class DialogAndPermissions : AppCompatActivity() {
     private lateinit var binding: ActivityDialogAndPermissionsBinding
 
     private lateinit var progressBar: Dialog
+
+    // variables for run time permissions
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
+
+    private var isCameraPermissionsGranted = false
+    private var isLocationPermissionGranted = false
+    private var isRecordPermissionGranted = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDialogAndPermissionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
+        // permission launcher
+        permissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+
+                isCameraPermissionsGranted =
+                    permissions[android.Manifest.permission.CAMERA] ?: isCameraPermissionsGranted
+
+                isRecordPermissionGranted =
+                    permissions[android.Manifest.permission.RECORD_AUDIO]
+                        ?: isRecordPermissionGranted
+
+                isLocationPermissionGranted =
+                    permissions[android.Manifest.permission.ACCESS_FINE_LOCATION]
+                        ?: isLocationPermissionGranted
+
+            }
+
+        requestPermission()
+
         binding.btnAlertDialog.setOnClickListener {
             myAlertDialog(
-                "my Sample Dialog ",
-                "hello this is a custom message for my Alert Dialog :-) "
+                "my Sample Dialog ", "hello this is a custom message for my Alert Dialog :-) "
             )
         }
 
@@ -57,6 +88,41 @@ class DialogAndPermissions : AppCompatActivity() {
             myDatePickerDialog()
         }
     }
+
+    // function for requesting permissions
+    fun requestPermission() {
+
+        isCameraPermissionsGranted = ContextCompat.checkSelfPermission(
+            this, android.Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+
+        isLocationPermissionGranted = ContextCompat.checkSelfPermission(
+            this, android.Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        isRecordPermissionGranted = ContextCompat.checkSelfPermission(
+            this, android.Manifest.permission.RECORD_AUDIO
+        ) == PackageManager.PERMISSION_GRANTED
+
+        val permissionRequest: MutableList<String> = ArrayList()
+
+        if (!isCameraPermissionsGranted) {
+            permissionRequest.add(android.Manifest.permission.CAMERA)
+        }
+        if (!isLocationPermissionGranted) {
+            permissionRequest.add(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+        if (!isRecordPermissionGranted) {
+            permissionRequest.add(android.Manifest.permission.RECORD_AUDIO)
+        }
+
+        if (permissionRequest.isNotEmpty()) {
+            permissionLauncher.launch(permissionRequest.toTypedArray())
+        }
+
+
+    }
+
 
     // function for having Alert Dialog
     private fun myAlertDialog(title: String, message: String) {
@@ -137,15 +203,13 @@ class DialogAndPermissions : AppCompatActivity() {
         val year = myCalendar.get(Calendar.YEAR)
 
         val datePickerDialog = DatePickerDialog(
-            this,
-            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                 Toast.makeText(
                     this@DialogAndPermissions,
                     "Selected Date: day: $dayOfMonth month: $month year: $year ",
                     Toast.LENGTH_LONG
                 ).show()
-            },
-            year, month, day
+            }, year, month, day
         )
         datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
         datePickerDialog.show()
