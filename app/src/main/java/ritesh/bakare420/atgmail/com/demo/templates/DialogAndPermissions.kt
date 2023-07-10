@@ -13,6 +13,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import org.w3c.dom.Text
 import ritesh.bakare420.atgmail.com.demo.templates.databinding.ActivityDialogAndPermissionsBinding
 import java.util.*
@@ -36,6 +41,12 @@ class DialogAndPermissions : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDialogAndPermissionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        // run time permissions in Dexter
+        binding.btnDexterPermissions.setOnClickListener {
+            getPermissions()
+        }
 
 
         // permission launcher
@@ -88,6 +99,54 @@ class DialogAndPermissions : AppCompatActivity() {
             myDatePickerDialog()
         }
     }
+
+    // get permissions using dexter
+    private fun getPermissions() {
+        Dexter.withContext(this)
+            .withPermissions(
+                android.Manifest.permission.CALL_PHONE,
+                android.Manifest.permission.READ_CONTACTS,
+                android.Manifest.permission.READ_SMS
+            )
+            .withListener(object : MultiplePermissionsListener {
+
+                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+
+                    report.let {
+                        if (report!!.areAllPermissionsGranted()) {
+                            Toast.makeText(
+                                applicationContext,
+                                "All Permissions Granted ",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "Please Grant All Permissions",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permissions: MutableList<PermissionRequest>?,
+                    token: PermissionToken?
+                ) {
+                    token?.continuePermissionRequest()
+                }
+
+            })
+            .withErrorListener {
+                Toast.makeText(
+                    applicationContext,
+                    "Please Grant All Require Permissions",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
 
     // function for requesting permissions
     fun requestPermission() {

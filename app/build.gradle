@@ -48,4 +48,7 @@ dependencies {
     // Dependency for coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
 
+    // Dependency for Dexter (Run time Permission)
+    implementation 'com.karumi:dexter:6.2.3'
+
 }
