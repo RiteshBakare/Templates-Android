@@ -2,6 +2,7 @@ package ritesh.bakare420.atgmail.com.demo.templates.AllAboutAPI
 
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -46,6 +47,13 @@ interface ApiInterface {
     suspend fun patchPost(
         @Path("id") id:Int,
         @Body user: User
+    ) : Response<User>
+
+
+    // function for DELETE Request
+    @DELETE("posts/{id}")
+    suspend fun deletePost(
+        @Path("id") id: Int,
     ) : Response<User>
 
 }

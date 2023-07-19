@@ -40,6 +40,51 @@ class APIActivity : AppCompatActivity() {
         // for PATCH Request
         patchDataRequest()
 
+
+        // for DELETE Request
+        deleteDataRequest()
+
+
+    }
+
+    private fun deleteDataRequest() {
+        GlobalScope.launch(Dispatchers.IO) {
+
+            val response = try {
+
+                RetrofitInstance.api.deletePost(10)
+
+            } catch (e: HttpException) {
+                Toast.makeText(applicationContext, "error: ${e.message()}", Toast.LENGTH_SHORT)
+                    .show()
+                return@launch
+            } catch (e: IOException) {
+                Toast.makeText(applicationContext, "error: ${e.message}", Toast.LENGTH_SHORT).show()
+                return@launch
+            }
+
+            if (response.isSuccessful && response.body() != null) {
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Code: ${response.code()} ",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    Log.d("MyAPI", "-------------------------------")
+                    Log.d("MyAPI", "-------------DELETE------------")
+                    Log.d("MyAPI", "HTTP Code: ${response.code()} ")
+                    Log.d("MyAPI", "data: ${response.body()!!.id.toString()}  ")
+                    Log.d("MyAPI", "data: ${response.body()!!.body}  ")
+                    Log.d("MyAPI", "data: ${response.body()!!.title}  ")
+                    Log.d("MyAPI", "data: ${response.body()!!.userId}  ")
+                    Log.d("MyAPI", "-------------------------------")
+
+
+                }
+            }
+        }
     }
 
     private fun patchDataRequest() {
