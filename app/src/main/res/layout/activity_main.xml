@@ -39,4 +39,14 @@
         android:layout_margin="10dp"
         />
 
+    <Button
+        android:id="@+id/btnRetrofitAPI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All about API"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        />
+
 </LinearLayout>
