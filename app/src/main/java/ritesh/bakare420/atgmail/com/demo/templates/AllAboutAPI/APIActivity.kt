@@ -19,7 +19,9 @@ class APIActivity : AppCompatActivity() {
             startActivity(Intent(this, GETAPIActivity::class.java))
         }
 
-
+        binding.btnPOSTAPI.setOnClickListener {
+            startActivity(Intent(this,POSTAPIActivity::class.java))
+        }
     }
 
 
