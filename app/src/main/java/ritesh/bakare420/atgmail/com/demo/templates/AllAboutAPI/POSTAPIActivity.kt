@@ -56,6 +56,44 @@ class POSTAPIActivity : AppCompatActivity() {
                 }
             }
 
+
+            //---------------------------------------------------------------------------------
+            // this function is for sending the data to a server that does not accept json
+
+            GlobalScope.launch(Dispatchers.IO) {
+
+                val response = try {
+
+                    RetrofitInstance.api.createURLPost(10,"URL Title ","URL Body");
+
+                } catch (e: HttpException) {
+                    Toast.makeText(applicationContext, "error: ${e.message()}", Toast.LENGTH_SHORT)
+                        .show()
+                    return@launch
+                } catch (e: IOException) {
+                    Toast.makeText(applicationContext, "error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+
+                if (response.isSuccessful && response.body() != null) {
+
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "Code: ${response.code()} ", Toast.LENGTH_SHORT).show()
+                        Log.d("MyAPI","-------------------------------")
+                        Log.d("MyAPI", "HTTP Code: ${response.code()} ")
+
+                        Log.d("MyAPI", "data: ${response.body()!!.id.toString()}  ")
+                        Log.d("MyAPI", "data: ${response.body()!!.body}  ")
+                        Log.d("MyAPI", "data: ${response.body()!!.title}  ")
+                        Log.d("MyAPI", "data: ${response.body()!!.userId}  ")
+
+                    }
+                }
+
+
+            }
+
+
         }
 
     }
