@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ritesh.bakare420.atgmail.com.demo.templates.AllAboutAPI.APIActivity
 import ritesh.bakare420.atgmail.com.demo.templates.RecyclerView.RecyclerViewActivity
+import ritesh.bakare420.atgmail.com.demo.templates.SQLLiteCURD.SQLLiteCRUDActivity
 import ritesh.bakare420.atgmail.com.demo.templates.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +40,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,APIActivity::class.java))
         }
 
+        //
+        binding.btnSQLLite.setOnClickListener {
+            startActivity(Intent(this, SQLLiteCRUDActivity::class.java))
+        }
     }
 
 

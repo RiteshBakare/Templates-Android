@@ -21,6 +21,12 @@
         android:theme="@style/Theme.Templates"
         tools:targetApi="31">
         <activity
+            android:name=".SQLLiteCURD.SQLAddTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SQLLiteCURD.SQLLiteCRUDActivity"
+            android:exported="false" />
+        <activity
             android:name=".AllAboutAPI.POSTAPIActivity"
             android:exported="false" />
         <activity
