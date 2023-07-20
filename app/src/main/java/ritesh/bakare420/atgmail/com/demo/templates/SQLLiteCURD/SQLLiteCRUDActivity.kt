@@ -10,6 +10,8 @@ class SQLLiteCRUDActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySqlliteCrudactivityBinding
 
+    private lateinit var adapter : TaskListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySqlliteCrudactivityBinding.inflate(layoutInflater)
@@ -25,7 +27,7 @@ class SQLLiteCRUDActivity : AppCompatActivity() {
 
         val list = dataBase.getAllTask()
 
-        val adapter = TaskListAdapter(list)
+        adapter = TaskListAdapter(list)
 
         binding.sqlRecyclerView.adapter = adapter
 
@@ -33,5 +35,14 @@ class SQLLiteCRUDActivity : AppCompatActivity() {
 
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
 
 }
